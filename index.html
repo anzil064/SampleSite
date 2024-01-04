@@ -8,9 +8,10 @@ try {
   document.cookie = "testcookie=testvalue;";
   console.log(' occuring 1\n.\n.\n.');
   const cookiesEnabled = /testcookie=testvalue/.test(document.cookie);
-  console.log(' occuring 2\n.\n.\n.');
+  
+  console.log(cookiesEnabled, document.cookie, ' occuring 2\n.\n.\n.');
   document.cookie = "testcookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-  console.log(' occuring\n.\n.\n.');
+  console.log(' occuring3\n.\n.\n.');
 
   if (!cookiesEnabled) {
     console.log('Cookies blocked\n.\n.\n.');
