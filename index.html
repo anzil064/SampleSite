@@ -8,5 +8,14 @@
   <body>
     <h1>Welcome</h1>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/IsgM7HjEVKU?si=WHdtyRqNpaTWknGB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <script>
+      window.addEventListener("load", function () {
+        const noticeElem = document.querySelector('.cky-notice-des');
+        if (noticeElem) {
+          const rejectElem = noticeElem.querySelector('a');
+          if (rejectElem) rejectElem.setAttribute("data-cky-tag", "reject-button");
+        }
+      })
+    </script>
   </body>
 </html>
