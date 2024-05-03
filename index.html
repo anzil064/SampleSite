@@ -11,12 +11,16 @@
     <script>
       window.addEventListener("load", function () {
         setTimeout(function () {
+          console.log("HOI");
           const noticeElem = document.querySelector('.cky-notice-des');
+          console.log(noticeElem);
           if (noticeElem) {
             const rejectElem = noticeElem.querySelector('a');
+            console.log(rejectElem);
             if (rejectElem) {
               rejectElem.addEventListener("click", function () {
                 performBannerAction("reject");
+                console.log("Action Performed");
               })
             }
           }
