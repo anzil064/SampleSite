@@ -10,22 +10,28 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/IsgM7HjEVKU?si=WHdtyRqNpaTWknGB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     <script>
       window.addEventListener("load", function () {
-        setTimeout(function () {
-          console.log("HOI");
-          const noticeElem = document.querySelector('.cky-notice-des');
-          console.log(noticeElem);
-          if (noticeElem) {
-            const rejectElem = noticeElem.querySelector('a');
-            console.log(rejectElem);
-            if (rejectElem) {
-              rejectElem.addEventListener("click", function () {
-                performBannerAction("reject");
-                console.log("Action Performed");
-              })
-            }
+        waitForElement(".cky-notice-des", function {
+          const rejectElem = document.querySelector('.cky-notice-des').querySelector('a');
+          console.log(rejectElem);
+          if (rejectElem) {
+            rejectElem.addEventListener("click", function () {
+              performBannerAction("reject");
+              console.log("Action Performed");
+            })
           }
-        }, 1000);
-      })
+        });
+      });
+
+      function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) return callback();
+        checktimeout++;
+        if (checktimeout < 120) {
+          setTimeout(function () {
+            waitForElement(selector, callback);
+          }, 500);
+        }
+      }
     </script>
   </body>
 </html>
