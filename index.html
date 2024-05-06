@@ -1,10 +1,35 @@
 <html>
   <head>
 <!-- Start cookieyes banner --> <script id="cookieyes" type="text/javascript" src="https://mojoview.com/client_data/8c8a55538b49b8787bc9e212/script.js"></script> <!-- End cookieyes banner -->
+<script>
+  if (window.self !== window.top) {
+    console.log("Website is loaded in an iframe.");
 
-</script> -->
-    <title>Sample site</title>
-  </head>
+    var checktimeout = 0;
+    window.addEventListener("load", function () {
+      waitForElement(".cky-consent-container", function () {
+        var cookieBanner = document.querySelector(".cky-consent-container");
+        if (cookieBanner) {
+          cookieBanner.classList.add("cky-hide");
+        }
+      });
+    });
+    function waitForElement(selector, callback) {
+      const element = document.querySelector(selector);
+      if (element) return callback();
+      checktimeout++;
+      if (checktimeout < 120) {
+        setTimeout(function () {
+          waitForElement(selector, callback);
+        }, 10);
+      }
+    }
+  } else {
+    console.log("Website is not loaded in an iframe.");
+  }
+</script>
+<title>Sample site</title>
+</head>
   <body>
     <h1>Welcome</h1>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/IsgM7HjEVKU?si=WHdtyRqNpaTWknGB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
